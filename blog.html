@@ -50,31 +50,8 @@
     <!-- Blog Posts -->
     <section class="section">
       <div class="container">
-        <div class="blog-grid">
-
-          <article class="blog-card">
-            <img src="Assets/images/blog-post.jpg" alt="Annual Return Filing">
-            <div class="blog-card-body">
-              <p class="date">Aug 12, 2025 &middot; 1 min read</p>
-              <h3>Annual Return Filing</h3>
-              <p>All Singapore-incorporated companies must file an Annual Return with ACRA to update key company details and confirm compliance. Filing must be done within a specified period after the AGM or the company's financial year-end.</p>
-            </div>
-          </article>
-
-          <article class="blog-card">
-            <img src="Assets/images/contact-hero-bg.jpg" alt="CPF Contribution Basics for Employers">
-            <div class="blog-card-body">
-              <p class="date">Aug 12, 2025 &middot; 1 min read</p>
-              <h3>CPF Contribution Basics for Employers</h3>
-              <p>In Singapore, the Central Provident Fund (CPF) is a mandatory social security savings scheme for Singapore Citizens and Permanent Residents. Employers must make CPF contributions for eligible employees.</p>
-            </div>
-          </article>
-
-        </div>
-
-        <div style="text-align:center; margin-top:50px;">
-          <p>For more articles and insights, visit our full blog:</p>
-          <a href="https://lumeninsightssg.wixsite.com/lumen-insights/blog" target="_blank" rel="noopener" class="btn btn-outline-dark" style="margin-top:15px;">View All Posts</a>
+        <div class="blog-grid" id="blog-container">
+          <!-- Posts loaded dynamically from Dev.to RSS -->
         </div>
       </div>
     </section>
@@ -132,5 +109,72 @@
   </footer>
 
   <script src="script.js"></script>
+  <!-- Article Viewer Overlay -->
+  <div id="article-overlay" class="article-overlay" style="display:none;" onclick="if(event.target===this)closeArticle()">
+    <div class="article-overlay-inner">
+      <button class="article-close-btn" onclick="closeArticle()" aria-label="Close">&times;</button>
+      <button class="article-back-btn" onclick="closeArticle()">&larr; Back to Blog</button>
+      <article class="article-full">
+        <h1 id="article-title"></h1>
+        <p class="article-date" id="article-date"></p>
+        <div class="article-content" id="article-content"></div>
+      </article>
+    </div>
+  </div>
+
+  <script>
+    const rssFeed = "https://api.rss2json.com/v1/api.json?rss_url=https://dev.to/feed/lumeninsights/";
+    const blogPosts = [];
+
+    function openArticle(index) {
+      const post = blogPosts[index];
+      if (!post) return;
+      document.getElementById('article-title').textContent = post.title;
+      document.getElementById('article-date').textContent = post.pubDate.substring(0, 10);
+      document.getElementById('article-content').innerHTML = post.content;
+      document.getElementById('article-overlay').style.display = 'block';
+      document.body.style.overflow = 'hidden';
+      document.getElementById('article-overlay').scrollTop = 0;
+    }
+
+    function closeArticle() {
+      document.getElementById('article-overlay').style.display = 'none';
+      document.body.style.overflow = '';
+    }
+
+    // Handle browser back button
+    window.addEventListener('popstate', () => {
+      if (document.getElementById('article-overlay').style.display === 'block') {
+        closeArticle();
+      }
+    });
+
+    fetch(rssFeed)
+      .then(res => res.json())
+      .then(data => {
+        const container = document.getElementById("blog-container");
+        data.items.slice(0, 6).forEach((post, i) => {
+          blogPosts.push(post);
+          const img = post.thumbnail
+            ? `<img src="${post.thumbnail}" alt="${post.title}" class="blog-img">`
+            : '';
+          container.innerHTML += `
+            <article class="blog-card">
+              ${img}
+              <div class="blog-card-body">
+                <p class="date">${post.pubDate.substring(0, 10)}</p>
+                <h3>${post.title}</h3>
+                <p>${post.description.replace(/<[^>]*>/g, '').substring(0, 150)}...</p>
+                <a href="javascript:void(0)" onclick="openArticle(${i})" class="btn btn-outline-dark" style="margin-top:10px;">Read Article</a>
+              </div>
+            </article>
+          `;
+        });
+      })
+      .catch(() => {
+        document.getElementById("blog-container").innerHTML =
+          '<p style="text-align:center;">Unable to load posts. Please visit <a href="https://dev.to/lumeninsights">our Dev.to blog</a> directly.</p>';
+      });
+  </script>
 </body>
 </html>
