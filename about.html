@@ -11,7 +11,7 @@
   <meta name="twitter:card" content="summary_large_image">
   <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body data-page="about">
 
   <header class="site-header">
     <div class="header-inner">
@@ -19,17 +19,17 @@
 	    <a href="index.html">
 			<img src="Assets/Logo/LumenInsightsLogo.avif" alt="Lumen Insights Pte Ltd">
 		</a>
-        <span class="header-tagline">Boutique Finance &amp; Business<br>Technology Advisory Firm</span>
+        <span class="header-tagline" data-i18n-html="header.tagline">Boutique Finance &amp; Business<br>Technology Advisory Firm</span>
       </div>
       <button class="nav-toggle" aria-label="Toggle navigation">
         <span></span><span></span><span></span>
       </button>
       <nav class="main-nav">
-        <a href="index.html">Home</a>
-        <a href="about.html" class="active">About</a>
-        <a href="services.html">Services</a>
-        <a href="blog.html">Blog</a>
-        <a href="contact.html">Contact</a>
+        <a href="index.html" data-i18n="nav.home">Home</a>
+        <a href="about.html" class="active" data-i18n="nav.about">About</a>
+        <a href="services.html" data-i18n="nav.services">Services</a>
+        <a href="blog.html" data-i18n="nav.blog">Blog</a>
+        <a href="contact.html" data-i18n="nav.contact">Contact</a>
       </nav>
     </div>
   </header>
@@ -42,7 +42,7 @@
       </div>
       <div class="hero-overlay"></div>
       <div class="hero-content">
-        <h1>About<br>Lumen Insights<br>Pte Ltd</h1>
+        <h1 data-i18n-html="about.hero.heading">About<br>Lumen Insights<br>Pte Ltd</h1>
       </div>
     </section>
 
@@ -51,11 +51,11 @@
       <div class="container">
         <div class="about-intro">
           <div class="about-intro-text">
-            <h3 style="margin-bottom:25px;">Dedicated to Empowering Your Financial Success</h3>
-            <p>Welcome to <strong>Lumen Insights</strong>, a boutique advisory firm dedicated to supporting freelancers and small businesses with reliable financial management and business infrastructure. Our services include accounting and bookkeeping, tax and compliance support, corporate secretarial coordination, and digital solutions designed to help businesses operate more efficiently.</p>
-            <p>At Lumen Insights, we take pride in delivering personalized and professional services tailored to the unique needs of each client. Our goal is to help ensure your financial records remain accurate, compliant, and useful for informed decision-making, while supporting your business with the right operational and digital tools.</p>
-            <p>We understand the challenges entrepreneurs face and are committed to helping you focus on growing your business while we support the financial and compliance aspects of your operations.</p>
-            <p>Stay updated with the latest insights and industry developments by visiting our <a href="blog.html" style="color:var(--color-teal);">blog</a>. You may also explore our network of professional partners for specialized support in areas such as corporate compliance and financial advisory.</p>
+            <h3 style="margin-bottom:25px;" data-i18n="about.intro.heading">Dedicated to Empowering Your Financial Success</h3>
+            <p data-i18n-html="about.intro.p1">Welcome to <strong>Lumen Insights</strong>, a boutique advisory firm dedicated to supporting freelancers and small businesses with reliable financial management and business infrastructure. Our services include accounting and bookkeeping, tax and compliance support, corporate secretarial coordination, and digital solutions designed to help businesses operate more efficiently.</p>
+            <p data-i18n="about.intro.p2">At Lumen Insights, we take pride in delivering personalized and professional services tailored to the unique needs of each client. Our goal is to help ensure your financial records remain accurate, compliant, and useful for informed decision-making, while supporting your business with the right operational and digital tools.</p>
+            <p data-i18n="about.intro.p3">We understand the challenges entrepreneurs face and are committed to helping you focus on growing your business while we support the financial and compliance aspects of your operations.</p>
+            <p data-i18n-html="about.intro.p4">Stay updated with the latest insights and industry developments by visiting our <a href="blog.html" style="color:var(--color-teal);">blog</a>. You may also explore our network of professional partners for specialized support in areas such as corporate compliance and financial advisory.</p>
           </div>
           <div class="about-intro-photo">
             <img src="Assets/About/profile.avif" alt="Profile" class="profile-photo">
@@ -69,24 +69,24 @@
       <div class="container">
         <div class="about-credentials">
           <div class="about-credentials-col">
-            <h3>Certifications &amp; Accreditations</h3>
+            <h3 data-i18n="about.certs.heading">Certifications &amp; Accreditations</h3>
             <ul class="qualifications">
-              <li>CPA Australia</li>
-              <li>Master of Professional Accounting</li>
-              <li>Bachelor of Art (Hons) in Business Administration</li>
+              <li data-i18n="about.certs.cpa">CPA Australia</li>
+              <li data-i18n="about.certs.mpa">Master of Professional Accounting</li>
+              <li data-i18n="about.certs.ba">Bachelor of Art (Hons) in Business Administration</li>
             </ul>
             <div class="xero-badge">
               <img src="Assets/About/xero-badge.avif" alt="Xero Certified Advisor Partner Badge">
             </div>
           </div>
           <div class="about-credentials-col">
-            <h3>Diverse Sector Expertise</h3>
-            <p>Medical &middot; Service &middot; Leasing &middot; Technology &middot; Manufacturing &middot; Environmental and Recycling &middot; Construction and Project Management</p>
+            <h3 data-i18n="about.sectors.heading">Diverse Sector Expertise</h3>
+            <p data-i18n="about.sectors.list">Medical &middot; Service &middot; Leasing &middot; Technology &middot; Manufacturing &middot; Environmental and Recycling &middot; Construction and Project Management</p>
           </div>
         </div>
         <div style="margin-top:25px; display:flex; gap:15px; flex-wrap:wrap;">
-          <a href="mailto:lumen.insights.sg@gmail.com?subject=Enquiry%20%E2%80%93%20%5BYour%20Company%20Name%5D" class="btn btn-primary">Email Us</a>
-          <a href="https://wa.me/6596846556" target="_blank" rel="noopener" class="btn btn-outline-dark">WhatsApp</a>
+          <a href="mailto:lumen.insights.sg@gmail.com?subject=Enquiry%20%E2%80%93%20%5BYour%20Company%20Name%5D" class="btn btn-primary" data-i18n="about.cta.email">Email Us</a>
+          <a href="https://wa.me/6596846556" target="_blank" rel="noopener" class="btn btn-outline-dark" data-i18n="about.cta.whatsapp">WhatsApp</a>
         </div>
       </div>
     </section>
@@ -95,12 +95,12 @@
   <footer class="site-footer">
     <div class="footer-inner">
       <div class="footer-info">
-        <h3>Contact Us</h3>
-        <p>12 Woodlands Square<br>
+        <h3 data-i18n="footer.contact.heading">Contact Us</h3>
+        <p data-i18n-html="footer.contact.address">12 Woodlands Square<br>
         #13-79 Woods Square Tower One<br>
         Singapore 737715</p>
-        <p>Tel: <a href="tel:+6596846556">9684 6556</a><br>
-        Email: <a href="mailto:lumen.insights.sg@gmail.com">lumen.insights.sg@gmail.com</a></p>
+        <p><span data-i18n="footer.contact.tel">Tel:</span> <a href="tel:+6596846556">9684 6556</a><br>
+        <span data-i18n="footer.contact.email">Email:</span> <a href="mailto:lumen.insights.sg@gmail.com">lumen.insights.sg@gmail.com</a></p>
         <div class="footer-social">
           <a href="https://www.facebook.com/profile.php?id=61579036696146" target="_blank" rel="noopener"><img src="Assets/icons/facebook.png" alt="Facebook"></a>
           <a href="https://www.linkedin.com/company/lumen-insights-pte-ltd/" target="_blank" rel="noopener"><img src="Assets/icons/linkedin.png" alt="LinkedIn"></a>
@@ -108,37 +108,38 @@
         </div>
       </div>
       <div class="contact-form">
-        <h3>Send Us a Message</h3>
+        <h3 data-i18n="footer.form.heading">Send Us a Message</h3>
         <form class="contact-form-native" action="https://docs.google.com/forms/d/e/1FAIpQLSfxtB2ZLLO_8_jOQA1Qr-X3-sDR7LYVfwQnQH9MiliKk4vS7w/formResponse" method="POST" target="hidden_iframe" onsubmit="this.classList.add('submitted');">
           <div class="form-group">
-            <label for="footer-name">Name *</label>
+            <label for="footer-name" data-i18n="footer.form.name">Name *</label>
             <input type="text" id="footer-name" name="entry.2005620554" required>
           </div>
           <div class="form-group">
-            <label for="footer-email">Email *</label>
+            <label for="footer-email" data-i18n="footer.form.email">Email *</label>
             <input type="email" id="footer-email" name="entry.1045781291" required>
           </div>
           <div class="form-group">
-            <label for="footer-subject">Subject *</label>
+            <label for="footer-subject" data-i18n="footer.form.subject">Subject *</label>
             <input type="text" id="footer-subject" name="entry.1065046570" required>
           </div>
           <div class="form-group">
-            <label for="footer-message">Message *</label>
+            <label for="footer-message" data-i18n="footer.form.message">Message *</label>
             <textarea id="footer-message" name="entry.839337160" rows="5" required></textarea>
           </div>
-          <button type="submit" class="btn btn-primary">Send Message</button>
-          <p class="form-success-msg">Thank you! Your message has been sent.</p>
+          <button type="submit" class="btn btn-primary" data-i18n="footer.form.submit">Send Message</button>
+          <p class="form-success-msg" data-i18n="footer.form.success">Thank you! Your message has been sent.</p>
         </form>
         <iframe name="hidden_iframe" style="display:none;"></iframe>
       </div>
     </div>
     <div class="container">
-      <div class="footer-copyright">
+      <div class="footer-copyright" data-i18n="footer.copyright">
         &copy; 2025 by Lumen Insights Pte Ltd. All rights reserved.
       </div>
     </div>
   </footer>
 
   <script src="script.js"></script>
+  <script src="i18n.js"></script>
 </body>
 </html>

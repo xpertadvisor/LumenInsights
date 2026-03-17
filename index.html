@@ -13,7 +13,7 @@
   <meta name="twitter:card" content="summary_large_image">
   <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body data-page="home">
 
   <header class="site-header">
     <div class="header-inner">
@@ -21,17 +21,17 @@
         <a href="index.html">
 			<img src="Assets/Logo/LumenInsightsLogo.avif" alt="Lumen Insights Pte Ltd">
 		</a>
-        <span class="header-tagline">Boutique Finance &amp; Business<br>Technology Advisory Firm</span>
+        <span class="header-tagline" data-i18n-html="header.tagline">Boutique Finance &amp; Business<br>Technology Advisory Firm</span>
       </div>
       <button class="nav-toggle" aria-label="Toggle navigation">
         <span></span><span></span><span></span>
       </button>
       <nav class="main-nav">
-        <a href="index.html" class="active">Home</a>
-        <a href="about.html">About</a>
-        <a href="services.html">Services</a>
-        <a href="blog.html">Blog</a>
-        <a href="contact.html">Contact</a>
+        <a href="index.html" class="active" data-i18n="nav.home">Home</a>
+        <a href="about.html" data-i18n="nav.about">About</a>
+        <a href="services.html" data-i18n="nav.services">Services</a>
+        <a href="blog.html" data-i18n="nav.blog">Blog</a>
+        <a href="contact.html" data-i18n="nav.contact">Contact</a>
       </nav>
     </div>
   </header>
@@ -46,10 +46,10 @@
       </div>
       <div class="hero-overlay"></div>
       <div class="hero-content">
-        <p style="letter-spacing:0.18em; font-size:17px; text-transform:uppercase;">Your Partner in Financial Success</p>
-        <h1>For Your Business</h1>
-        <p>Supporting freelancers and growing SMEs with <strong>bookkeeping, tax compliance, business advisory, and custom digital solutions</strong>.</p>
-        <a href="contact.html" class="btn btn-outline">Free Consultation for New SMEs</a>
+        <p style="letter-spacing:0.18em; font-size:17px; text-transform:uppercase;" data-i18n="home.hero.subtitle">Your Partner in Financial Success</p>
+        <h1 data-i18n="home.hero.heading">For Your Business</h1>
+        <p data-i18n-html="home.hero.desc">Supporting freelancers and growing SMEs with <strong>bookkeeping, tax compliance, business advisory, and custom digital solutions</strong>.</p>
+        <a href="contact.html" class="btn btn-outline" data-i18n="home.hero.cta">Free Consultation for New SMEs</a>
       </div>
     </section>
 
@@ -58,14 +58,14 @@
       <div class="container">
         <div class="two-col">
           <div>
-            <h2>About Us</h2>
-            <p>Lumen Insights is a boutique advisory firm supporting freelancers and small businesses with financial management and business infrastructure.</p>
-            <p>We combine <strong>professional bookkeeping expertise with modern digital solutions</strong> to help businesses operate more efficiently.</p>
-            <p>Our services include bookkeeping, tax compliance support, corporate secretarial services, business advisory, and the development of <strong>custom software tools, websites, and business automation systems</strong> that simplify operations and improve financial visibility.</p>
-            <p>By integrating finance and technology, we help entrepreneurs streamline workflows, gain clearer insights into their numbers, and focus on scaling their business.</p>
+            <h2 data-i18n="home.about.heading">About Us</h2>
+            <p data-i18n="home.about.p1">Lumen Insights is a boutique advisory firm supporting freelancers and small businesses with financial management and business infrastructure.</p>
+            <p data-i18n-html="home.about.p2">We combine <strong>professional bookkeeping expertise with modern digital solutions</strong> to help businesses operate more efficiently.</p>
+            <p data-i18n-html="home.about.p3">Our services include bookkeeping, tax compliance support, corporate secretarial services, business advisory, and the development of <strong>custom software tools, websites, and business automation systems</strong> that simplify operations and improve financial visibility.</p>
+            <p data-i18n="home.about.p4">By integrating finance and technology, we help entrepreneurs streamline workflows, gain clearer insights into their numbers, and focus on scaling their business.</p>
             <div style="margin-top:25px; display:flex; gap:15px; flex-wrap:wrap;">
-              <a href="about.html" class="btn btn-outline-dark">Learn More</a>
-              <a href="mailto:lumen.insights.sg@gmail.com?subject=Enquiry%20%E2%80%93%20%5BYour%20Company%20Name%5D" class="btn btn-primary">Free Consultation</a>
+              <a href="about.html" class="btn btn-outline-dark" data-i18n="home.about.learnmore">Learn More</a>
+              <a href="mailto:lumen.insights.sg@gmail.com?subject=Enquiry%20%E2%80%93%20%5BYour%20Company%20Name%5D" class="btn btn-primary" data-i18n="home.about.consultation">Free Consultation</a>
             </div>
           </div>
           <div>
@@ -79,47 +79,47 @@
     <section class="section section-services">
       <div class="container">
         <div class="section-title">
-          <h2>Our Services</h2>
+          <h2 data-i18n="home.services.heading">Our Services</h2>
         </div>
         <div class="services-grid">
           <div class="service-card">
             <img src="Assets/Home/OurService-AccoutingAndBooking.avif" alt="Accounting & Bookkeeping">
             <div class="service-card-overlay">
-              <h3>Accounting &amp; Bookkeeping</h3>
-              <p>Accuracy that drives clarity</p>
-              <a href="services.html#accounting-bookkeeping" class="btn btn-outline">View More</a>
+              <h3 data-i18n="home.services.accounting.title">Accounting &amp; Bookkeeping</h3>
+              <p data-i18n="home.services.accounting.desc">Accuracy that drives clarity</p>
+              <a href="services.html#accounting-bookkeeping" class="btn btn-outline" data-i18n="home.services.viewmore">View More</a>
             </div>
           </div>
           <div class="service-card">
             <img src="Assets/Home/OurService-TaxAndCompliance.avif" alt="Tax & Compliance">
             <div class="service-card-overlay">
-              <h3>Tax &amp; Compliance</h3>
-              <p>Stay compliant, save smart</p>
-              <a href="services.html#tax-compliance" class="btn btn-outline">View More</a>
+              <h3 data-i18n="home.services.tax.title">Tax &amp; Compliance</h3>
+              <p data-i18n="home.services.tax.desc">Stay compliant, save smart</p>
+              <a href="services.html#tax-compliance" class="btn btn-outline" data-i18n="home.services.viewmore">View More</a>
             </div>
           </div>
           <div class="service-card">
             <img src="Assets/Home/OurService-CorporateSecretarial.avif" alt="Corporate Secretarial">
             <div class="service-card-overlay">
-              <h3>Corporate Secretarial</h3>
-              <p>Ensure regulatory compliance and proper corporate governance</p>
-              <a href="services.html#corporate-secretarial" class="btn btn-outline">View More</a>
+              <h3 data-i18n="home.services.corporate.title">Corporate Secretarial</h3>
+              <p data-i18n="home.services.corporate.desc">Ensure regulatory compliance and proper corporate governance</p>
+              <a href="services.html#corporate-secretarial" class="btn btn-outline" data-i18n="home.services.viewmore">View More</a>
             </div>
           </div>
           <div class="service-card">
             <img src="Assets/Home/BusinessAdvisory.avif" alt="Business Advisory">
             <div class="service-card-overlay">
-              <h3>Business Advisory</h3>
-              <p>Turn insights into smarter decisions</p>
-              <a href="services.html#business-advisory" class="btn btn-outline">View More</a>
+              <h3 data-i18n="home.services.advisory.title">Business Advisory</h3>
+              <p data-i18n="home.services.advisory.desc">Turn insights into smarter decisions</p>
+              <a href="services.html#business-advisory" class="btn btn-outline" data-i18n="home.services.viewmore">View More</a>
             </div>
           </div>
           <div class="service-card">
             <img src="Assets/Home/OurService-DigitalSolutionsAndSoftwareDevelopement.avif" alt="Digital Solutions & Software Development">
             <div class="service-card-overlay">
-              <h3>Digital Solutions &amp; Software Development</h3>
-              <p>Tailored software and digital solutions for business efficiency</p>
-              <a href="services.html#digital-solutions" class="btn btn-outline">View More</a>
+              <h3 data-i18n="home.services.digital.title">Digital Solutions &amp; Software Development</h3>
+              <p data-i18n="home.services.digital.desc">Tailored software and digital solutions for business efficiency</p>
+              <a href="services.html#digital-solutions" class="btn btn-outline" data-i18n="home.services.viewmore">View More</a>
             </div>
           </div>
         </div>
@@ -130,12 +130,12 @@
   <footer class="site-footer">
     <div class="footer-inner">
       <div class="footer-info">
-        <h3>Contact Us</h3>
-        <p>12 Woodlands Square<br>
+        <h3 data-i18n="footer.contact.heading">Contact Us</h3>
+        <p data-i18n-html="footer.contact.address">12 Woodlands Square<br>
         #13-79 Woods Square Tower One<br>
         Singapore 737715</p>
-        <p>Tel: <a href="tel:+6596846556">9684 6556</a><br>
-        Email: <a href="mailto:lumen.insights.sg@gmail.com">lumen.insights.sg@gmail.com</a></p>
+        <p><span data-i18n="footer.contact.tel">Tel:</span> <a href="tel:+6596846556">9684 6556</a><br>
+        <span data-i18n="footer.contact.email">Email:</span> <a href="mailto:lumen.insights.sg@gmail.com">lumen.insights.sg@gmail.com</a></p>
         <div class="footer-social">
           <a href="https://www.facebook.com/profile.php?id=61579036696146" target="_blank" rel="noopener"><img src="Assets/icons/facebook.png" alt="Facebook"></a>
           <a href="https://www.linkedin.com/company/lumen-insights-pte-ltd/" target="_blank" rel="noopener"><img src="Assets/icons/linkedin.png" alt="LinkedIn"></a>
@@ -143,37 +143,38 @@
         </div>
       </div>
       <div class="contact-form">
-        <h3>Send Us a Message</h3>
+        <h3 data-i18n="footer.form.heading">Send Us a Message</h3>
         <form class="contact-form-native" action="https://docs.google.com/forms/d/e/1FAIpQLSfxtB2ZLLO_8_jOQA1Qr-X3-sDR7LYVfwQnQH9MiliKk4vS7w/formResponse" method="POST" target="hidden_iframe" onsubmit="this.classList.add('submitted');">
           <div class="form-group">
-            <label for="footer-name">Name *</label>
+            <label for="footer-name" data-i18n="footer.form.name">Name *</label>
             <input type="text" id="footer-name" name="entry.2005620554" required>
           </div>
           <div class="form-group">
-            <label for="footer-email">Email *</label>
+            <label for="footer-email" data-i18n="footer.form.email">Email *</label>
             <input type="email" id="footer-email" name="entry.1045781291" required>
           </div>
           <div class="form-group">
-            <label for="footer-subject">Subject *</label>
+            <label for="footer-subject" data-i18n="footer.form.subject">Subject *</label>
             <input type="text" id="footer-subject" name="entry.1065046570" required>
           </div>
           <div class="form-group">
-            <label for="footer-message">Message *</label>
+            <label for="footer-message" data-i18n="footer.form.message">Message *</label>
             <textarea id="footer-message" name="entry.839337160" rows="5" required></textarea>
           </div>
-          <button type="submit" class="btn btn-primary">Send Message</button>
-          <p class="form-success-msg">Thank you! Your message has been sent.</p>
+          <button type="submit" class="btn btn-primary" data-i18n="footer.form.submit">Send Message</button>
+          <p class="form-success-msg" data-i18n="footer.form.success">Thank you! Your message has been sent.</p>
         </form>
         <iframe name="hidden_iframe" style="display:none;"></iframe>
       </div>
     </div>
     <div class="container">
-      <div class="footer-copyright">
+      <div class="footer-copyright" data-i18n="footer.copyright">
         &copy; 2025 by Lumen Insights Pte Ltd. All rights reserved.
       </div>
     </div>
   </footer>
 
   <script src="script.js"></script>
+  <script src="i18n.js"></script>
 </body>
 </html>

@@ -11,7 +11,7 @@
   <meta name="twitter:card" content="summary_large_image">
   <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body data-page="contact">
 
   <header class="site-header">
     <div class="header-inner">
@@ -19,17 +19,17 @@
 	  	<a href="index.html">
 			<img src="Assets/Logo/LumenInsightsLogo.avif" alt="Lumen Insights Pte Ltd">
 		</a>
-        <span class="header-tagline">Boutique Finance &amp; Business<br>Technology Advisory Firm</span>
+        <span class="header-tagline" data-i18n-html="header.tagline">Boutique Finance &amp; Business<br>Technology Advisory Firm</span>
       </div>
       <button class="nav-toggle" aria-label="Toggle navigation">
         <span></span><span></span><span></span>
       </button>
       <nav class="main-nav">
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="services.html">Services</a>
-        <a href="blog.html">Blog</a>
-        <a href="contact.html" class="active">Contact</a>
+        <a href="index.html" data-i18n="nav.home">Home</a>
+        <a href="about.html" data-i18n="nav.about">About</a>
+        <a href="services.html" data-i18n="nav.services">Services</a>
+        <a href="blog.html" data-i18n="nav.blog">Blog</a>
+        <a href="contact.html" class="active" data-i18n="nav.contact">Contact</a>
       </nav>
     </div>
   </header>
@@ -42,8 +42,8 @@
       </div>
       <div class="hero-overlay"></div>
       <div class="hero-content">
-        <h1>Contact Us</h1>
-        <p>We'd love to hear from you. Reach out to discuss how we can help your business grow.</p>
+        <h1 data-i18n="contact.hero.heading">Contact Us</h1>
+        <p data-i18n="contact.hero.desc">We'd love to hear from you. Reach out to discuss how we can help your business grow.</p>
       </div>
     </section>
 
@@ -52,28 +52,28 @@
       <div class="container">
         <div class="contact-grid">
           <div class="contact-details">
-            <h3>Get In Touch</h3>
-            <p>Whether you need bookkeeping support, tax compliance guidance, or a technology-driven business solution, our team is ready to assist.</p>
+            <h3 data-i18n="contact.getintouch">Get In Touch</h3>
+            <p data-i18n="contact.getintouch.desc">Whether you need bookkeeping support, tax compliance guidance, or a technology-driven business solution, our team is ready to assist.</p>
 
             <div class="contact-info-block">
-              <h4>Office Address</h4>
+              <h4 data-i18n="contact.office">Office Address</h4>
               <p>12 Woodlands Square<br>
               #13-79 Woods Square Tower One<br>
               Singapore 737715</p>
             </div>
 
             <div class="contact-info-block">
-              <h4>Phone</h4>
+              <h4 data-i18n="contact.phone">Phone</h4>
               <p><a href="tel:+6596846556">+65 9684 6556</a></p>
             </div>
 
             <div class="contact-info-block">
-              <h4>Email</h4>
+              <h4 data-i18n="contact.email">Email</h4>
               <p><a href="mailto:lumen.insights.sg@gmail.com">lumen.insights.sg@gmail.com</a></p>
             </div>
 
             <div class="contact-info-block">
-              <h4>Follow Us</h4>
+              <h4 data-i18n="contact.followus">Follow Us</h4>
               <div class="contact-social">
                 <a href="https://www.facebook.com/profile.php?id=61579036696146" target="_blank" rel="noopener"><img src="Assets/icons/facebook.png" alt="Facebook"></a>
                 <a href="https://www.linkedin.com/company/lumen-insights-pte-ltd/" target="_blank" rel="noopener"><img src="Assets/icons/linkedin.png" alt="LinkedIn"></a>
@@ -83,26 +83,26 @@
           </div>
 
           <div class="contact-form-wrapper">
-            <h3>Send Us a Message</h3>
+            <h3 data-i18n="contact.form.heading">Send Us a Message</h3>
             <form class="contact-form-native" action="https://docs.google.com/forms/d/e/1FAIpQLSfxtB2ZLLO_8_jOQA1Qr-X3-sDR7LYVfwQnQH9MiliKk4vS7w/formResponse" method="POST" target="hidden_iframe" onsubmit="this.classList.add('submitted');">
               <div class="form-group">
-                <label for="contact-name">Name *</label>
+                <label for="contact-name" data-i18n="contact.form.name">Name *</label>
                 <input type="text" id="contact-name" name="entry.2005620554" required>
               </div>
               <div class="form-group">
-                <label for="contact-email">Email *</label>
+                <label for="contact-email" data-i18n="contact.form.email">Email *</label>
                 <input type="email" id="contact-email" name="entry.1045781291" required>
               </div>
               <div class="form-group">
-                <label for="contact-subject">Subject *</label>
+                <label for="contact-subject" data-i18n="contact.form.subject">Subject *</label>
                 <input type="text" id="contact-subject" name="entry.1065046570" required>
               </div>
               <div class="form-group">
-                <label for="contact-message">Message *</label>
+                <label for="contact-message" data-i18n="contact.form.message">Message *</label>
                 <textarea id="contact-message" name="entry.839337160" rows="5" required></textarea>
               </div>
-              <button type="submit" class="btn btn-primary">Send Message</button>
-              <p class="form-success-msg">Thank you! Your message has been sent.</p>
+              <button type="submit" class="btn btn-primary" data-i18n="contact.form.submit">Send Message</button>
+              <p class="form-success-msg" data-i18n="contact.form.success">Thank you! Your message has been sent.</p>
             </form>
             <iframe name="hidden_iframe" style="display:none;"></iframe>
           </div>
@@ -115,12 +115,12 @@
   <footer class="site-footer">
     <div class="footer-inner">
       <div class="footer-info">
-        <h3>Contact Us</h3>
-        <p>12 Woodlands Square<br>
+        <h3 data-i18n="footer.contact.heading">Contact Us</h3>
+        <p data-i18n-html="footer.contact.address">12 Woodlands Square<br>
         #13-79 Woods Square Tower One<br>
         Singapore 737715</p>
-        <p>Tel: <a href="tel:+6596846556">9684 6556</a><br>
-        Email: <a href="mailto:lumen.insights.sg@gmail.com">lumen.insights.sg@gmail.com</a></p>
+        <p><span data-i18n="footer.contact.tel">Tel:</span> <a href="tel:+6596846556">9684 6556</a><br>
+        <span data-i18n="footer.contact.email">Email:</span> <a href="mailto:lumen.insights.sg@gmail.com">lumen.insights.sg@gmail.com</a></p>
         <div class="footer-social">
           <a href="https://www.facebook.com/profile.php?id=61579036696146" target="_blank" rel="noopener"><img src="Assets/icons/facebook.png" alt="Facebook"></a>
           <a href="https://www.linkedin.com/company/lumen-insights-pte-ltd/" target="_blank" rel="noopener"><img src="Assets/icons/linkedin.png" alt="LinkedIn"></a>
@@ -129,13 +129,13 @@
       </div>
     </div>
     <div class="container">
-      <div class="footer-copyright">
+      <div class="footer-copyright" data-i18n="footer.copyright">
         &copy; 2025 by Lumen Insights Pte Ltd. All rights reserved.
       </div>
     </div>
   </footer>
 
   <script src="script.js"></script>
+  <script src="i18n.js"></script>
 </body>
 </html>
-

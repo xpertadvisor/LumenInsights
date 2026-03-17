@@ -100,6 +100,77 @@ p { margin-bottom: 1em; }
 .main-nav a:hover,
 .main-nav a.active { color: var(--color-teal); }
 
+/* ===== Language Switcher ===== */
+.lang-switcher { position: relative; display: inline-flex; align-items: center; }
+.lang-switcher-btn {
+  font-family: var(--font-body);
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  background: transparent;
+  border: 1px solid rgba(0, 0, 0, 0.18);
+  border-radius: 999px;
+  padding: 8px 12px;
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
+}
+.lang-switcher-btn:hover {
+  border-color: var(--color-teal);
+  color: var(--color-teal);
+}
+.lang-switcher-dropdown {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: calc(100% + 10px);
+  min-width: 140px;
+  background: var(--color-white);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+  overflow: hidden;
+  z-index: 200;
+}
+.lang-switcher.open .lang-switcher-dropdown { display: block; }
+.lang-switcher-dropdown a {
+  display: block;
+  padding: 10px 14px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--color-primary);
+  transition: background 0.2s, color 0.2s;
+}
+.lang-switcher-dropdown a:hover {
+  background: rgba(49, 127, 129, 0.08);
+  color: var(--color-teal);
+}
+.lang-switcher-dropdown a.active {
+  background: rgba(49, 127, 129, 0.12);
+  color: var(--color-teal);
+}
+
+/* ===== i18n (Fonts + FOUC) ===== */
+[data-i18n], [data-i18n-html], [data-i18n-attr] { transition: opacity 0.12s ease; }
+body.i18n-loading [data-i18n],
+body.i18n-loading [data-i18n-html],
+body.i18n-loading [data-i18n-attr] { opacity: 0; }
+
+html[lang="zh"] body,
+html[lang="zh"] .article-content,
+html[lang="zh"] .main-nav a,
+html[lang="zh"] .lang-switcher-btn,
+html[lang="zh"] .lang-switcher-dropdown a {
+  font-family: "Microsoft YaHei", "PingFang SC", "Hiragino Sans GB", "Noto Sans SC", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+}
+html[lang="zh"] h1,
+html[lang="zh"] h2,
+html[lang="zh"] h3,
+html[lang="zh"] h4 {
+  font-family: "Microsoft YaHei", "PingFang SC", "Hiragino Sans GB", "Noto Sans SC", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+  text-transform: none;
+  letter-spacing: 0.02em;
+}
+
 /* Hamburger */
 .nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 5px; }
 .nav-toggle span {
@@ -537,6 +608,15 @@ p { margin-bottom: 1em; }
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
   }
   .main-nav.open { display: flex; }
+
+  .lang-switcher { width: 100%; }
+  .lang-switcher-btn { width: 100%; text-align: left; }
+  .lang-switcher-dropdown {
+    position: static;
+    box-shadow: none;
+    border-radius: 10px;
+    margin-top: 8px;
+  }
 
   .services-grid { grid-template-columns: 1fr; }
   .service-card { min-height: 350px; }

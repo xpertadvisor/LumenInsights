@@ -12,7 +12,7 @@
   <meta name="twitter:card" content="summary_large_image">
   <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body data-page="blog">
 
   <header class="site-header">
     <div class="header-inner">
@@ -20,17 +20,17 @@
 	    <a href="index.html">
 			<img src="Assets/Logo/LumenInsightsLogo.avif" alt="Lumen Insights Pte Ltd">
 		</a>
-        <span class="header-tagline">Boutique Finance &amp; Business<br>Technology Advisory Firm</span>
+        <span class="header-tagline" data-i18n-html="header.tagline">Boutique Finance &amp; Business<br>Technology Advisory Firm</span>
       </div>
       <button class="nav-toggle" aria-label="Toggle navigation">
         <span></span><span></span><span></span>
       </button>
       <nav class="main-nav">
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="services.html">Services</a>
-        <a href="blog.html" class="active">Blog</a>
-        <a href="contact.html">Contact</a>
+        <a href="index.html" data-i18n="nav.home">Home</a>
+        <a href="about.html" data-i18n="nav.about">About</a>
+        <a href="services.html" data-i18n="nav.services">Services</a>
+        <a href="blog.html" class="active" data-i18n="nav.blog">Blog</a>
+        <a href="contact.html" data-i18n="nav.contact">Contact</a>
       </nav>
     </div>
   </header>
@@ -43,7 +43,7 @@
       </div>
       <div class="hero-overlay"></div>
       <div class="hero-content">
-        <h1>Business Lifecycle &amp; Compliance</h1>
+        <h1 data-i18n="blog.hero.heading">Business Lifecycle &amp; Compliance</h1>
       </div>
     </section>
 
@@ -60,12 +60,12 @@
   <footer class="site-footer">
     <div class="footer-inner">
       <div class="footer-info">
-        <h3>Contact Us</h3>
-        <p>12 Woodlands Square<br>
+        <h3 data-i18n="footer.contact.heading">Contact Us</h3>
+        <p data-i18n-html="footer.contact.address">12 Woodlands Square<br>
         #13-79 Woods Square Tower One<br>
         Singapore 737715</p>
-        <p>Tel: <a href="tel:+6596846556">9684 6556</a><br>
-        Email: <a href="mailto:lumen.insights.sg@gmail.com">lumen.insights.sg@gmail.com</a></p>
+        <p><span data-i18n="footer.contact.tel">Tel:</span> <a href="tel:+6596846556">9684 6556</a><br>
+        <span data-i18n="footer.contact.email">Email:</span> <a href="mailto:lumen.insights.sg@gmail.com">lumen.insights.sg@gmail.com</a></p>
         <div class="footer-social">
           <a href="https://www.facebook.com/profile.php?id=61579036696146" target="_blank" rel="noopener"><img src="Assets/icons/facebook.png" alt="Facebook"></a>
           <a href="https://www.linkedin.com/company/lumen-insights-pte-ltd/" target="_blank" rel="noopener"><img src="Assets/icons/linkedin.png" alt="LinkedIn"></a>
@@ -73,32 +73,32 @@
         </div>
       </div>
       <div class="contact-form">
-        <h3>Send Us a Message</h3>
+        <h3 data-i18n="footer.form.heading">Send Us a Message</h3>
         <form class="contact-form-native" action="https://docs.google.com/forms/d/e/1FAIpQLSfxtB2ZLLO_8_jOQA1Qr-X3-sDR7LYVfwQnQH9MiliKk4vS7w/formResponse" method="POST" target="hidden_iframe" onsubmit="this.classList.add('submitted');">
           <div class="form-group">
-            <label for="footer-name">Name *</label>
+            <label for="footer-name" data-i18n="footer.form.name">Name *</label>
             <input type="text" id="footer-name" name="entry.2005620554" required>
           </div>
           <div class="form-group">
-            <label for="footer-email">Email *</label>
+            <label for="footer-email" data-i18n="footer.form.email">Email *</label>
             <input type="email" id="footer-email" name="entry.1045781291" required>
           </div>
           <div class="form-group">
-            <label for="footer-subject">Subject *</label>
+            <label for="footer-subject" data-i18n="footer.form.subject">Subject *</label>
             <input type="text" id="footer-subject" name="entry.1065046570" required>
           </div>
           <div class="form-group">
-            <label for="footer-message">Message *</label>
+            <label for="footer-message" data-i18n="footer.form.message">Message *</label>
             <textarea id="footer-message" name="entry.839337160" rows="5" required></textarea>
           </div>
-          <button type="submit" class="btn btn-primary">Send Message</button>
-          <p class="form-success-msg">Thank you! Your message has been sent.</p>
+          <button type="submit" class="btn btn-primary" data-i18n="footer.form.submit">Send Message</button>
+          <p class="form-success-msg" data-i18n="footer.form.success">Thank you! Your message has been sent.</p>
         </form>
         <iframe name="hidden_iframe" style="display:none;"></iframe>
       </div>
     </div>
     <div class="container">
-      <div class="footer-copyright">
+      <div class="footer-copyright" data-i18n="footer.copyright">
         &copy; 2025 by Lumen Insights Pte Ltd. All rights reserved.
       </div>
     </div>
@@ -109,7 +109,7 @@
   <div id="article-overlay" class="article-overlay" style="display:none;" onclick="if(event.target===this)closeArticle()">
     <div class="article-overlay-inner">
       <button class="article-close-btn" onclick="closeArticle()" aria-label="Close">&times;</button>
-      <button class="article-back-btn" onclick="closeArticle()">&larr; Back to Blog</button>
+      <button class="article-back-btn" onclick="closeArticle()" data-i18n="blog.backtoblog">&larr; Back to Blog</button>
       <article class="article-full">
         <h1 id="article-title"></h1>
         <p class="article-date" id="article-date"></p>
@@ -145,10 +145,20 @@
       }
     });
 
+    // Get translated label for "Read Article" button
+    function getReadArticleLabel() {
+      if (window.__i18n) {
+        var t = window.__i18n.getTranslation('blog.readarticle');
+        if (t) return t;
+      }
+      return 'Read Article';
+    }
+
     fetch(rssFeed)
       .then(res => res.json())
       .then(data => {
         const container = document.getElementById("blog-container");
+        const readLabel = getReadArticleLabel();
         data.items.slice(0, 6).forEach((post, i) => {
           blogPosts.push(post);
           const img = post.thumbnail
@@ -161,7 +171,7 @@
                 <p class="date">${post.pubDate.substring(0, 10)}</p>
                 <h3>${post.title}</h3>
                 <p>${post.description.replace(/<[^>]*>/g, '').substring(0, 150)}...</p>
-                <a href="javascript:void(0)" onclick="openArticle(${i})" class="btn btn-outline-dark" style="margin-top:10px;">Read Article</a>
+                <a href="javascript:void(0)" onclick="openArticle(${i})" class="btn btn-outline-dark" style="margin-top:10px;">${readLabel}</a>
               </div>
             </article>
           `;
@@ -169,8 +179,9 @@
       })
       .catch(() => {
         document.getElementById("blog-container").innerHTML =
-          '<p style="text-align:center;">Unable to load posts. Please visit <a href="https://dev.to/lumeninsights">our Dev.to blog</a> directly.</p>';
+          '<p style="text-align:center;" data-i18n-html="blog.error">Unable to load posts. Please visit <a href="https://dev.to/lumeninsights">our Dev.to blog</a> directly.</p>';
       });
   </script>
+  <script src="i18n.js"></script>
 </body>
 </html>
