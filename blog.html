@@ -207,15 +207,17 @@
       return 'Read Article';
     }
 
-    async function openArticle(id, title, date) {
-      document.getElementById('article-title').textContent = title;
-      document.getElementById('article-date').textContent = date;
+    async function openArticle(index) {
+      const post = allPosts[index];
+      if (!post) return;
+      document.getElementById('article-title').textContent = post.title;
+      document.getElementById('article-date').textContent = post.published_at ? post.published_at.substring(0, 10) : '';
       document.getElementById('article-content').innerHTML = '<p style="text-align:center">Loading...</p>';
       document.getElementById('article-overlay').style.display = 'block';
       document.body.style.overflow = 'hidden';
       document.getElementById('article-overlay').scrollTop = 0;
       try {
-        const res = await fetch('https://dev.to/api/articles/' + id);
+        const res = await fetch('https://dev.to/api/articles/' + post.id);
         if (!res.ok) throw new Error();
         const article = await res.json();
         document.getElementById('article-content').innerHTML = article.body_html || '<p>Content unavailable.</p>';
@@ -253,7 +255,7 @@
               <p class="date">${esc(date)}</p>
               <h3>${esc(post.title)}</h3>
               <p>${desc}...</p>
-              <a href="javascript:void(0)" onclick="openArticle(${post.id}, ${JSON.stringify(post.title)}, '${esc(date)}')" class="btn btn-outline-dark" style="margin-top:10px;">${readLabel}</a>
+              <a href="javascript:void(0)" onclick="openArticle(${i})" class="btn btn-outline-dark" style="margin-top:10px;">${readLabel}</a>
             </div>
           </article>
         `;
