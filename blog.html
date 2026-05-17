@@ -188,33 +188,17 @@
   </div>
 
   <script>
-    const rssFeed = "https://api.rss2json.com/v1/api.json?rss_url=https://dev.to/feed/lumeninsights/";
-    const blogPosts = [];
+    const DEVTO_USERNAME = 'lumeninsights';
+    const POSTS_PER_PAGE = 6;
+    let allPosts = [];
+    let currentPage = 1;
 
-    function openArticle(index) {
-      const post = blogPosts[index];
-      if (!post) return;
-      document.getElementById('article-title').textContent = post.title;
-      document.getElementById('article-date').textContent = post.pubDate.substring(0, 10);
-      document.getElementById('article-content').innerHTML = post.content;
-      document.getElementById('article-overlay').style.display = 'block';
-      document.body.style.overflow = 'hidden';
-      document.getElementById('article-overlay').scrollTop = 0;
+    function esc(str) {
+      return String(str)
+        .replace(/&/g, '&amp;').replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
     }
 
-    function closeArticle() {
-      document.getElementById('article-overlay').style.display = 'none';
-      document.body.style.overflow = '';
-    }
-
-    // Handle browser back button
-    window.addEventListener('popstate', () => {
-      if (document.getElementById('article-overlay').style.display === 'block') {
-        closeArticle();
-      }
-    });
-
-    // Get translated label for "Read Article" button
     function getReadArticleLabel() {
       if (window.__i18n) {
         var t = window.__i18n.getTranslation('blog.readarticle');
@@ -223,106 +207,110 @@
       return 'Read Article';
     }
 
-    fetch(rssFeed)
-      .then(res => res.json())
+    async function openArticle(id, title, date) {
+      document.getElementById('article-title').textContent = title;
+      document.getElementById('article-date').textContent = date;
+      document.getElementById('article-content').innerHTML = '<p style="text-align:center">Loading...</p>';
+      document.getElementById('article-overlay').style.display = 'block';
+      document.body.style.overflow = 'hidden';
+      document.getElementById('article-overlay').scrollTop = 0;
+      try {
+        const res = await fetch('https://dev.to/api/articles/' + id);
+        if (!res.ok) throw new Error();
+        const article = await res.json();
+        document.getElementById('article-content').innerHTML = article.body_html || '<p>Content unavailable.</p>';
+      } catch (e) {
+        document.getElementById('article-content').innerHTML = '<p>Unable to load article content.</p>';
+      }
+    }
+
+    function closeArticle() {
+      document.getElementById('article-overlay').style.display = 'none';
+      document.body.style.overflow = '';
+    }
+
+    window.addEventListener('popstate', () => {
+      if (document.getElementById('article-overlay').style.display === 'block') closeArticle();
+    });
+
+    function renderPosts(page) {
+      const container = document.getElementById('blog-container');
+      const readLabel = getReadArticleLabel();
+      container.innerHTML = '';
+      const start = (page - 1) * POSTS_PER_PAGE;
+      const end = Math.min(start + POSTS_PER_PAGE, allPosts.length);
+      for (let i = start; i < end; i++) {
+        const post = allPosts[i];
+        const date = post.published_at ? post.published_at.substring(0, 10) : '';
+        const img = post.cover_image
+          ? `<img src="${esc(post.cover_image)}" alt="${esc(post.title)}" class="blog-img" loading="lazy">`
+          : '';
+        const desc = esc((post.description || '').replace(/<[^>]*>/g, '').substring(0, 150));
+        container.innerHTML += `
+          <article class="blog-card">
+            ${img}
+            <div class="blog-card-body">
+              <p class="date">${esc(date)}</p>
+              <h3>${esc(post.title)}</h3>
+              <p>${desc}...</p>
+              <a href="javascript:void(0)" onclick="openArticle(${post.id}, ${JSON.stringify(post.title)}, '${esc(date)}')" class="btn btn-outline-dark" style="margin-top:10px;">${readLabel}</a>
+            </div>
+          </article>
+        `;
+      }
+    }
+
+    function renderPagination() {
+      const paginationContainer = document.getElementById('pagination-controls');
+      const totalPages = Math.ceil(allPosts.length / POSTS_PER_PAGE);
+      paginationContainer.innerHTML = '';
+      if (totalPages <= 1) return;
+      if (currentPage > 1) {
+        paginationContainer.innerHTML += `<button onclick="changePage(${currentPage - 1})" class="btn btn-outline-dark">&#9664; Previous</button>`;
+      }
+      const startPage = Math.max(1, currentPage - 2);
+      const endPage = Math.min(totalPages, startPage + 4);
+      for (let p = startPage; p <= endPage; p++) {
+        if (p === currentPage) {
+          paginationContainer.innerHTML += `<span class="current-page">${p}</span>`;
+        } else {
+          paginationContainer.innerHTML += `<button onclick="changePage(${p})" class="btn btn-outline">${p}</button>`;
+        }
+      }
+      if (currentPage < totalPages) {
+        paginationContainer.innerHTML += `<button onclick="changePage(${currentPage + 1})" class="btn btn-outline-dark">Next &#9654;</button>`;
+      }
+      paginationContainer.innerHTML += `<p style="margin-top:10px;color:var(--color-gray);">Page ${currentPage} of ${totalPages}</p>`;
+    }
+
+    window.changePage = function(page) {
+      const totalPages = Math.ceil(allPosts.length / POSTS_PER_PAGE);
+      if (page < 1 || page > totalPages) return;
+      currentPage = page;
+      renderPosts(page);
+      renderPagination();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+
+    fetch('https://dev.to/api/articles?username=' + DEVTO_USERNAME + '&per_page=100')
+      .then(res => {
+        if (!res.ok) throw new Error();
+        return res.json();
+      })
       .then(data => {
-        const container = document.getElementById("blog-container");
-        const paginationContainer = document.getElementById("pagination-controls");
-        const readLabel = getReadArticleLabel();
-        
-        // Store all posts
-        blogPosts = data.items;
-        
-        // Pagination variables
-        const postsPerPage = 6;
-        let currentPage = 1;
-        const totalPages = Math.ceil(blogPosts.length / postsPerPage);
-        
-        // Function to render posts for a given page
-        function renderPosts(page) {
-          container.innerHTML = "";
-          const startIndex = (page - 1) * postsPerPage;
-          const endIndex = Math.min(startIndex + postsPerPage, blogPosts.length);
-          
-          for (let i = startIndex; i < endIndex; i++) {
-            const post = blogPosts[i];
-            const img = post.thumbnail
-              ? `<img src="${post.thumbnail}" alt="${post.title}" class="blog-img" loading="lazy">`
-              : '';
-            container.innerHTML += `
-              <article class="blog-card">
-                ${img}
-                <div class="blog-card-body">
-                  <p class="date">${post.pubDate.substring(0, 10)}</p>
-                  <h3>${post.title}</h3>
-                  <p>${post.description.replace(/<[^>]*>/g, '').substring(0, 150)}...</p>
-                  <a href="javascript:void(0)" onclick="openArticle(${i})" class="btn btn-outline-dark" style="margin-top:10px;">${readLabel}</a>
-                </div>
-              </article>
-            `;
-          }
+        if (!Array.isArray(data) || data.length === 0) {
+          document.getElementById('blog-container').innerHTML =
+            '<p style="text-align:center;">No posts found. Visit <a href="https://dev.to/lumeninsights">our Dev.to blog</a>.</p>';
+          return;
         }
-        
-        // Function to render pagination controls
-        function renderPagination() {
-          paginationContainer.innerHTML = "";
-          
-          // Previous button
-          if (currentPage > 1) {
-            paginationContainer.innerHTML += `
-              <button onclick="changePage(${currentPage - 1})" class="btn btn-outline-dark">&#9664; Previous</button>
-            `;
-          }
-          
-          // Page numbers (show max 5 pages at a time)
-          const startPage = Math.max(1, currentPage - 2);
-          const endPage = Math.min(totalPages, startPage + 4);
-          
-          for (let p = startPage; p <= endPage; p++) {
-            if (p === currentPage) {
-              paginationContainer.innerHTML += `
-                <span class="current-page">${p}</span>
-              `;
-            } else {
-              paginationContainer.innerHTML += `
-                <button onclick="changePage(${p})" class="btn btn-outline">${p}</button>
-              `;
-            }
-          }
-          
-          // Next button
-          if (currentPage < totalPages) {
-            paginationContainer.innerHTML += `
-              <button onclick="changePage(${currentPage + 1})" class="btn btn-outline-dark">Next &#9654;</button>
-            `;
-          }
-          
-          // Show page info
-          paginationContainer.innerHTML += `
-            <p style="margin-top: 10px; color: var(--color-gray);">
-              Page ${currentPage} of ${totalPages}
-            </p>
-          `;
-        }
-        
-        // Function to change page
-        window.changePage = function(page) {
-          if (page < 1 || page > totalPages) return;
-          currentPage = page;
-          renderPosts(page);
-          renderPagination();
-        };
-        
-        // Initial render
+        allPosts = data;
         renderPosts(currentPage);
         renderPagination();
-        
       })
       .catch(() => {
-        document.getElementById("blog-container").innerHTML =
+        document.getElementById('blog-container').innerHTML =
           '<p style="text-align:center;" data-i18n-html="blog.error">Unable to load posts. Please visit <a href="https://dev.to/lumeninsights">our Dev.to blog</a> directly.</p>';
-        // Hide pagination on error
-        document.getElementById("pagination-controls").innerHTML = "";
+        document.getElementById('pagination-controls').innerHTML = '';
       });
   </script>
   <script src="i18n.js"></script>
