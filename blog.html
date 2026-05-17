@@ -244,10 +244,8 @@
       for (let i = start; i < end; i++) {
         const post = allPosts[i];
         const date = post.published_at ? post.published_at.substring(0, 10) : '';
-        const imgSrc = post.cover_image || post.social_image;
-        const img = imgSrc
-          ? `<img src="${esc(imgSrc)}" alt="${esc(post.title)}" class="blog-img" loading="lazy">`
-          : '';
+        const imgSrc = post.cover_image || 'Assets/images/blog-post.jpg';
+        const img = `<img src="${esc(imgSrc)}" alt="${esc(post.title)}" class="blog-img" loading="lazy">`;
         const desc = esc((post.description || '').replace(/<[^>]*>/g, '').substring(0, 150));
         container.innerHTML += `
           <article class="blog-card">
