@@ -12,116 +12,14 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Lumen Insights Pte Ltd | Accounting & Bookkeeping | Singapore</title>
-  <meta name="description" content="Lumen Insights Pte Ltd provides expert accounting, bookkeeping, tax, and digital solutions for Singapore SMEs. Trusted advisory firm helping businesses grow with compliant financial management.">Lumen Insights Pte Ltd provides expert accounting, bookkeeping, tax, and digital solutions for Singapore SMEs. Trusted advisory firm helping businesses grow with compliant financial management.">
+  <meta name="description" content="Lumen Insight Accounting helps businesses in Singapore with bookkeeping, tax filing, payroll, and financial reporting. Reliable accounting services for SMEs.">
   <meta property="og:title" content="Lumen Insights Pte Ltd | Accounting & Bookkeeping | Singapore">
-  <meta property="og:description" content="Discover how Lumen Insights Pte Ltd helps Singapore SMEs thrive with professional accounting, tax compliance, business advisory, and custom digital solutions.">Discover how Lumen Insights Pte Ltd helps Singapore SMEs thrive with professional accounting, tax compliance, business advisory, and custom digital solutions.">
+  <meta property="og:description" content="Grow your business with Lumen Insight Accounting — expert bookkeeping, payroll, and tax services tailored for small and medium enterprises in Singapore.">
   <meta property="og:image" content="Assets/images/og-image.png">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Lumen Insights Pte Ltd">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="stylesheet" href="styles.css">
-
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    "name": "Lumen Insights Pte Ltd",
-    "image": "Assets/images/og-image.png",
-    "@id": "https://xpertadvisor.github.io/LumenInsights/",
-    "url": "https://xpertadvisor.github.io/LumenInsights/",
-    "telephone": "+65-9684-6556",
-    "priceRange": "$$",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "12 Woodlands Square #13-79",
-      "addressLocality": "Singapore",
-      "postalCode": "737715",
-      "addressCountry": "SG"
-    },
-    "geo": {
-      "@type": "GeoCoordinates",
-      "latitude": 1.4328,
-      "longitude": 103.7914
-    },
-    "openingHoursSpecification": [
-      {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": [
-          "Monday",
-          "Tuesday",
-          "Wednesday",
-          "Thursday",
-          "Friday"
-        ],
-        "opens": "09:00",
-        "closes": "18:00"
-      },
-      {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": "Saturday",
-        "opens": "09:00",
-        "closes": "13:00"
-      }
-    ],
-    "contactPoint": {
-      "@type": "ContactPoint",
-      "telephone": "+65-9684-6556",
-      "contactType": "Customer Service"
-    }
-  }
-  </script>
-
-
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    "name": "Lumen Insights Pte Ltd",
-    "image": "Assets/images/og-image.png",
-    "@id": "https://xpertadvisor.github.io/LumenInsights/",
-    "url": "https://xpertadvisor.github.io/LumenInsights/",
-    "telephone": "+65-9684-6556",
-    "priceRange": "$$",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "12 Woodlands Square #13-79",
-      "addressLocality": "Singapore",
-      "postalCode": "737715",
-      "addressCountry": "SG"
-    },
-    "geo": {
-      "@type": "GeoCoordinates",
-      "latitude": 1.4328,
-      "longitude": 103.7914
-    },
-    "openingHoursSpecification": [
-      {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": [
-          "Monday",
-          "Tuesday",
-          "Wednesday",
-          "Thursday",
-          "Friday"
-        ],
-        "opens": "09:00",
-        "closes": "18:00"
-      },
-      {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": "Saturday",
-        "opens": "09:00",
-        "closes": "13:00"
-      }
-    ],
-    "contactPoint": {
-      "@type": "ContactPoint",
-      "telephone": "+65-9684-6556",
-      "contactType": "Customer Service"
-    }
-  }
-  </script>
-
 </head>
 <body data-page="home">
 
@@ -129,7 +27,7 @@
     <div class="header-inner">
       <div class="header-brand">
         <a href="index.html">
-			<img src="Assets/Logo/LumenInsightsLogo.avif" alt="Lumen Insights Pte Ltd" loading="lazy">
+			<img src="Assets/Logo/LumenInsightsLogo.avif" alt="Lumen Insights Pte Ltd">
 		</a>
         <span class="header-tagline" data-i18n-html="header.tagline">Boutique Finance &amp; Business<br>Technology Advisory Firm</span>
       </div>
@@ -179,7 +77,7 @@
             </div>
           </div>
           <div>
-            <img src="Assets/images/team-meeting.jpg" alt="Team Meeting" loading="lazy">
+            <img src="Assets/images/team-meeting.jpg" alt="Team Meeting">
           </div>
         </div>
       </div>
@@ -193,7 +91,7 @@
         </div>
         <div class="services-grid">
           <div class="service-card">
-            <img src="Assets/Home/OurService-AccoutingAndBooking.avif" alt="Accounting & Bookkeeping" loading="lazy">
+            <img src="Assets/Home/OurService-AccoutingAndBooking.avif" alt="Accounting & Bookkeeping">
             <div class="service-card-overlay">
               <h3 data-i18n="home.services.accounting.title">Accounting &amp; Bookkeeping</h3>
               <p data-i18n="home.services.accounting.desc">Accuracy that drives clarity</p>
@@ -201,7 +99,7 @@
             </div>
           </div>
           <div class="service-card">
-            <img src="Assets/Home/OurService-TaxAndCompliance.avif" alt="Tax & Compliance" loading="lazy">
+            <img src="Assets/Home/OurService-TaxAndCompliance.avif" alt="Tax & Compliance">
             <div class="service-card-overlay">
               <h3 data-i18n="home.services.tax.title">Tax &amp; Compliance</h3>
               <p data-i18n="home.services.tax.desc">Stay compliant, save smart</p>
@@ -209,7 +107,7 @@
             </div>
           </div>
           <div class="service-card">
-            <img src="Assets/Home/OurService-CorporateSecretarial.avif" alt="Corporate Secretarial" loading="lazy">
+            <img src="Assets/Home/OurService-CorporateSecretarial.avif" alt="Corporate Secretarial">
             <div class="service-card-overlay">
               <h3 data-i18n="home.services.corporate.title">Corporate Secretarial</h3>
               <p data-i18n="home.services.corporate.desc">Ensure regulatory compliance and proper corporate governance</p>
@@ -217,7 +115,7 @@
             </div>
           </div>
           <div class="service-card">
-            <img src="Assets/Home/BusinessAdvisory.avif" alt="Business Advisory" loading="lazy">
+            <img src="Assets/Home/BusinessAdvisory.avif" alt="Business Advisory">
             <div class="service-card-overlay">
               <h3 data-i18n="home.services.advisory.title">Business Advisory</h3>
               <p data-i18n="home.services.advisory.desc">Turn insights into smarter decisions</p>
@@ -225,7 +123,7 @@
             </div>
           </div>
           <div class="service-card">
-            <img src="Assets/Home/OurService-DigitalSolutionsAndSoftwareDevelopement.avif" alt="Digital Solutions & Software Development" loading="lazy">
+            <img src="Assets/Home/OurService-DigitalSolutionsAndSoftwareDevelopement.avif" alt="Digital Solutions & Software Development">
             <div class="service-card-overlay">
               <h3 data-i18n="home.services.digital.title">Digital Solutions &amp; Software Development</h3>
               <p data-i18n="home.services.digital.desc">Tailored software and digital solutions for business efficiency</p>
@@ -247,9 +145,9 @@
         <p><span data-i18n="footer.contact.tel">Tel:</span> <a href="tel:+6596846556">9684 6556</a><br>
         <span data-i18n="footer.contact.email">Email:</span> <a href="mailto:lumen.insights.sg@gmail.com">lumen.insights.sg@gmail.com</a></p>
         <div class="footer-social">
-          <a href="https://www.facebook.com/profile.php?id=61579036696146" target="_blank" rel="noopener"><img src="Assets/icons/facebook.png" alt="Facebook" loading="lazy"></a>
-          <a href="https://www.linkedin.com/company/lumen-insights-pte-ltd/" target="_blank" rel="noopener"><img src="Assets/icons/linkedin.png" alt="LinkedIn" loading="lazy"></a>
-          <a href="https://wa.me/6596846556" target="_blank" rel="noopener"><img src="Assets/icons/whatsapp.png" alt="WhatsApp" loading="lazy"></a>
+          <a href="https://www.facebook.com/profile.php?id=61579036696146" target="_blank" rel="noopener"><img src="Assets/icons/facebook.png" alt="Facebook"></a>
+          <a href="https://www.linkedin.com/company/lumen-insights-pte-ltd/" target="_blank" rel="noopener"><img src="Assets/icons/linkedin.png" alt="LinkedIn"></a>
+          <a href="https://wa.me/6596846556" target="_blank" rel="noopener"><img src="Assets/icons/whatsapp.png" alt="WhatsApp"></a>
         </div>
       </div>
       <div class="contact-form">

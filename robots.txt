@@ -1,0 +1,17 @@
+# robots.txt for Lumen Insights Pte Ltd
+# Allow all crawlers to index the site
+
+User-agent: *
+Allow: /
+
+# Disallow private or sensitive directories (if any)
+Disallow: /private/
+Disallow: /admin/
+
+# Allow access to CSS, JS, and images for better rendering
+Allow: /Assets/
+Allow: /styles.css
+Allow: /script.js
+
+# Sitemap location
+Sitemap: https://xpertadvisor.github.io/LumenInsights/sitemap.xml
