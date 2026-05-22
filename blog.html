@@ -293,7 +293,8 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     };
 
-    fetch('https://dev.to/api/articles?username=' + DEVTO_USERNAME + '&per_page=100')
+    // Added cache-busting to avoid stale CDN response
+    fetch('https://dev.to/api/articles?username=' + DEVTO_USERNAME + '&per_page=100&cb=' + Date.now())
       .then(res => {
         if (!res.ok) throw new Error();
         return res.json();
