@@ -216,13 +216,29 @@
       document.getElementById('article-overlay').style.display = 'block';
       document.body.style.overflow = 'hidden';
       document.getElementById('article-overlay').scrollTop = 0;
+      // If we have an ID, fetch from API; otherwise fetch the Dev.to page directly
+      if (post.id) {
+        try {
+          const res = await fetch('https://dev.to/api/articles/' + post.id);
+          if (!res.ok) throw new Error();
+          const article = await res.json();
+          document.getElementById('article-content').innerHTML = article.body_html || '<p>Content unavailable.</p>';
+          return;
+        } catch (e) {
+          // Fall through to fetch Dev.to page
+        }
+      }
+      // Fallback: fetch the Dev.to article page and extract content
       try {
-        const res = await fetch('https://dev.to/api/articles/' + post.id);
+        const res = await fetch(post.url);
         if (!res.ok) throw new Error();
-        const article = await res.json();
-        document.getElementById('article-content').innerHTML = article.body_html || '<p>Content unavailable.</p>';
+        const html = await res.text();
+        const div = document.createElement('div');
+        div.innerHTML = html;
+        const articleBody = div.querySelector('.article-body') || div.querySelector('article');
+        document.getElementById('article-content').innerHTML = articleBody ? articleBody.innerHTML : '<p><a href="' + esc(post.url) + '" target="_blank" rel="noopener">Read on Dev.to</a></p>';
       } catch (e) {
-        document.getElementById('article-content').innerHTML = '<p>Unable to load article content.</p>';
+        document.getElementById('article-content').innerHTML = '<p><a href="' + esc(post.url) + '" target="_blank" rel="noopener">Read on Dev.to</a></p>';
       }
     }
 
@@ -310,90 +326,55 @@
           return;
         }
 
-        // Extract slug from RSS link to build article ID lookup
-        const slugs = [];
-        items.forEach(item => {
+      // Transform RSS items into posts, optionally matched with API data for IDs
+        function extractPost(item, apiArticle) {
+          const title = item.querySelector('title').textContent;
           const link = item.querySelector('link').textContent;
-          // e.g. https://dev.to/lumeninsights/my-article-1a2b -> slug is "my-article-1a2b"
           const slug = link.split('/').pop();
-          if (slug) slugs.push(slug);
-        });
+          const pubDate = item.querySelector('pubDate').textContent;
+          // Dev.to RSS puts HTML in <description> (not content:encoded)
+          const descriptionEl = item.querySelector('description');
+          const htmlDesc = descriptionEl ? descriptionEl.textContent : '';
+          const rawDesc = htmlDesc.replace(/<[^>]*>/g, '').trim();
+          // Extract first image from description HTML
+          let coverImage = 'Assets/images/blog-post.jpg';
+          const imgMatch = htmlDesc.match(/src="([^"]+)"/);
+          if (imgMatch) coverImage = imgMatch[1];
+          return {
+            id: apiArticle ? apiArticle.id : null,
+            title: title,
+            slug: slug,
+            url: link,
+            published_at: new Date(pubDate).toISOString(),
+            description: rawDesc,
+            cover_image: coverImage,
+            readable_publish_date: new Date(pubDate).toLocaleDateString('en-SG', {month: 'short', day: 'numeric'}),
+            tag_list: apiArticle ? (apiArticle.tag_list || []) : [],
+            reading_time_minutes: apiArticle ? (apiArticle.reading_time_minutes || 1) : 1
+          };
+        }
 
-        // Fetch article list from API to resolve IDs (may be cached but we get IDs)
+        // Try API to resolve IDs and get full metadata; fallback to RSS-only
         fetch('https://dev.to/api/articles?username=' + DEVTO_USERNAME + '&per_page=100&cb=' + Date.now(), {cache: 'no-store'})
           .then(res => res.json())
           .then(apiArticles => {
-            // Build slug->apiArticle map for ID resolution
             const slugMap = {};
-            apiArticles.forEach(a => {
-              const s = a.slug || '';
-              slugMap[s] = a;
-            });
-
-            // Transform RSS items into post objects
+            apiArticles.forEach(a => { slugMap[a.slug || ''] = a; });
             const posts = [];
             items.forEach(item => {
-              const title = item.querySelector('title').textContent;
               const link = item.querySelector('link').textContent;
               const slug = link.split('/').pop();
-              const pubDate = item.querySelector('pubDate').textContent;
-              const descriptionEl = item.querySelector('description');
-              const rawDesc = descriptionEl ? descriptionEl.textContent.replace(/<[^>]*>/g, '').trim() : '';
-              const contentEncoded = item.querySelector('content\\:encoded') ? item.querySelector('content\\:encoded').textContent : '';
-
-              // Extract cover image from content:encoded
-              let coverImage = 'Assets/images/blog-post.jpg';
-              const imgMatch = contentEncoded.match(/<img[^>]+src="([^"]+)"/);
-              if (imgMatch) coverImage = imgMatch[1];
-
-              const apiArticle = slugMap[slug] || {};
-              posts.push({
-                id: apiArticle.id || null,
-                title: title,
-                slug: slug,
-                url: link,
-                published_at: new Date(pubDate).toISOString(),
-                description: rawDesc,
-                cover_image: coverImage,
-                readable_publish_date: new Date(pubDate).toLocaleDateString('en-SG', {month: 'short', day: 'numeric'}),
-                tag_list: [],
-                reading_time_minutes: 1
-              });
+              posts.push(extractPost(item, slugMap[slug] || null));
             });
-
-            // Sort by date desc (RSS usually already is)
             posts.sort((a, b) => new Date(b.published_at) - new Date(a.published_at));
-
             allPosts = posts;
             renderPosts(currentPage);
             renderPagination();
           })
           .catch(() => {
-            // If API fails, still render from RSS without IDs
+            // RSS-only fallback (no API IDs)
             const posts = [];
-            items.forEach(item => {
-              const title = item.querySelector('title').textContent;
-              const link = item.querySelector('link').textContent;
-              const pubDate = item.querySelector('pubDate').textContent;
-              const descriptionEl = item.querySelector('description');
-              const rawDesc = descriptionEl ? descriptionEl.textContent.replace(/<[^>]*>/g, '').trim() : '';
-              const contentEncoded = item.querySelector('content\\:encoded') ? item.querySelector('content\\:encoded').textContent : '';
-              let coverImage = 'Assets/images/blog-post.jpg';
-              const imgMatch = contentEncoded.match(/<img[^>]+src="([^"]+)"/);
-              if (imgMatch) coverImage = imgMatch[1];
-              posts.push({
-                id: null,
-                title: title,
-                slug: link.split('/').pop(),
-                url: link,
-                published_at: new Date(pubDate).toISOString(),
-                description: rawDesc,
-                cover_image: coverImage,
-                readable_publish_date: new Date(pubDate).toLocaleDateString('en-SG', {month: 'short', day: 'numeric'}),
-                tag_list: [],
-                reading_time_minutes: 1
-              });
-            });
+            items.forEach(item => { posts.push(extractPost(item, null)); });
             posts.sort((a, b) => new Date(b.published_at) - new Date(a.published_at));
             allPosts = posts;
             renderPosts(currentPage);
